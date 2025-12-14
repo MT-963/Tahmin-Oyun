@@ -1,20 +1,20 @@
 using System.Data;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace GuessGame.DAL.Data;
 
-public class MySqlConnectionFactory : IDbConnectionFactory
+public class SqlConnectionFactory : IDbConnectionFactory
 {
     private readonly string _connectionString;
 
-    public MySqlConnectionFactory(string connectionString)
+    public SqlConnectionFactory(string connectionString)
     {
         _connectionString = connectionString;
     }
 
     public IDbConnection CreateConnection()
     {
-        var conn = new MySqlConnection(_connectionString);
+        var conn = new SqlConnection(_connectionString);
         conn.Open();
         return conn;
     }

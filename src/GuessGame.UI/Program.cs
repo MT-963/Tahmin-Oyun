@@ -22,9 +22,9 @@ internal static class Program
             ?? throw new InvalidOperationException("Connection string yok");
 
         // DAL
-        var factory = new MySqlConnectionFactory(connectionString);
-        var userRepo = new MySqlUserRepository(factory);
-        var scoreRepo = new MySqlScoreRepository(factory);
+        var factory = new SqlConnectionFactory(connectionString);
+        var userRepo = new SqlUserRepository(factory);
+        var scoreRepo = new SqlScoreRepository(factory);
 
         // BLL
         var authService = new AuthService(userRepo);

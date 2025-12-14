@@ -1,15 +1,15 @@
 using GuessGame.Core.Models;
 using GuessGame.DAL.Data;
 using GuessGame.DAL.Interfaces;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace GuessGame.DAL.Repositories;
 
-public class MySqlScoreRepository : IScoreRepository
+public class SqlScoreRepository : IScoreRepository
 {
     private readonly IDbConnectionFactory _factory;
 
-    public MySqlScoreRepository(IDbConnectionFactory factory)
+    public SqlScoreRepository(IDbConnectionFactory factory)
     {
         _factory = factory;
     }
@@ -18,9 +18,9 @@ public class MySqlScoreRepository : IScoreRepository
     {
         const string sql = @"INSERT INTO scores (user_id, score, sure, oyun_tarihi)
                              VALUES (@user_id, @score, @sure, @oyun_tarihi);
-                             SELECT LAST_INSERT_ID();";
+                             SELECT CAST(SCOPE_IDENTITY() AS INT);";
         using var conn = _factory.CreateConnection();
-        using var cmd = new MySqlCommand(sql, (MySqlConnection)conn);
+        using var cmd = new SqlCommand(sql, (SqlConnection)conn);
         cmd.Parameters.AddWithValue("@user_id", score.UserId);
         cmd.Parameters.AddWithValue("@score", score.Points);
         cmd.Parameters.AddWithValue("@sure", score.Sure.TotalSeconds);
@@ -35,9 +35,9 @@ public class MySqlScoreRepository : IScoreRepository
                              FROM scores s
                              INNER JOIN users u ON u.id = s.user_id
                              ORDER BY s.score DESC, s.sure ASC
-                             LIMIT @take;";
+                             OFFSET 0 ROWS FETCH NEXT @take ROWS ONLY;";
         using var conn = _factory.CreateConnection();
-        using var cmd = new MySqlCommand(sql, (MySqlConnection)conn);
+        using var cmd = new SqlCommand(sql, (SqlConnection)conn);
         cmd.Parameters.AddWithValue("@take", take);
         using var reader = cmd.ExecuteReader();
         var list = new List<Score>();
@@ -45,12 +45,12 @@ public class MySqlScoreRepository : IScoreRepository
         {
             list.Add(new Score
             {
-                Id = reader.GetInt32("id"),
-                UserId = reader.GetInt32("user_id"),
-                Points = reader.GetInt32("score"),
-                Sure = TimeSpan.FromSeconds(reader.GetDouble("sure")),
-                OyunTarihi = reader.GetDateTime("oyun_tarihi"),
-                Username = reader.GetString("username")
+                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                UserId = reader.GetInt32(reader.GetOrdinal("user_id")),
+                Points = reader.GetInt32(reader.GetOrdinal("score")),
+                Sure = TimeSpan.FromSeconds(reader.GetDouble(reader.GetOrdinal("sure"))),
+                OyunTarihi = reader.GetDateTime(reader.GetOrdinal("oyun_tarihi")),
+                Username = reader.GetString(reader.GetOrdinal("username"))
             });
         }
         return list;

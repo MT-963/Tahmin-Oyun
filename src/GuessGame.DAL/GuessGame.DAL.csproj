@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\GuessGame.Core\GuessGame.Core.csproj" />
-    <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
   </ItemGroup>
 </Project>
 
