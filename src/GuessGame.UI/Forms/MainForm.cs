@@ -70,6 +70,7 @@ public partial class MainForm : Form
         if (sender is not Button btn) return;
         var length = (int)_currentLevel;
         if (txtGuess.Text.Length >= length) return;
+        if (txtGuess.Text.Length == 0 && btn.Text == "0") return; // leading zero yok
         txtGuess.Text += btn.Text;
     }
 
@@ -92,6 +93,11 @@ public partial class MainForm : Form
         if (guess.Length != (int)_currentLevel)
         {
             MessageBox.Show($"Lütfen {(int)_currentLevel} haneli bir sayı girin.", "Eksik tahmin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+        if (guess.StartsWith('0'))
+        {
+            MessageBox.Show("Tahmin 0 ile başlayamaz.", "Geçersiz tahmin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 
@@ -151,6 +157,41 @@ public partial class MainForm : Form
         var attemptPenalty = attempts * 20;
         var total = baseScore - timePenalty - attemptPenalty;
         return Math.Max(total, 10);
+    }
+
+    private void txtGuess_KeyPress(object? sender, KeyPressEventArgs e)
+    {
+        var lengthLimit = (int)_currentLevel;
+
+        if (e.KeyChar == (char)Keys.Enter)
+        {
+            e.Handled = true;
+            btnSubmit.PerformClick();
+            return;
+        }
+
+        if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+        {
+            e.Handled = true;
+            return;
+        }
+
+        if (!char.IsControl(e.KeyChar))
+        {
+            // leading zero engeli
+            if (txtGuess.SelectionStart == 0 && txtGuess.TextLength == 0 && e.KeyChar == '0')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // uzunluk sınırı
+            var nextLength = txtGuess.TextLength - txtGuess.SelectionLength + 1;
+            if (nextLength > lengthLimit)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
 

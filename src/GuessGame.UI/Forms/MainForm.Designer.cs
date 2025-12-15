@@ -112,10 +112,11 @@ partial class MainForm
         this.txtGuess.MaxLength = 5;
         this.txtGuess.Name = "txtGuess";
         this.txtGuess.PlaceholderText = "Tahmin";
-        this.txtGuess.ReadOnly = true;
+        this.txtGuess.ReadOnly = false;
         this.txtGuess.Size = new System.Drawing.Size(200, 39);
         this.txtGuess.TabIndex = 3;
         this.txtGuess.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+        this.txtGuess.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGuess_KeyPress);
         // 
         // btnSubmit
         // 
@@ -230,6 +231,7 @@ partial class MainForm
         this.Name = "MainForm";
         this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         this.Text = "Sayı Tahmin Oyunu";
+        this.AcceptButton = this.btnSubmit;
         this.Load += new System.EventHandler(this.MainForm_Load);
         this.grpDifficulty.ResumeLayout(false);
         this.grpDifficulty.PerformLayout();
