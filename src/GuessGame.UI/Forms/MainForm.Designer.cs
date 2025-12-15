@@ -215,11 +215,11 @@ partial class MainForm
         // 
         this.lblLegend.AutoSize = true;
         this.lblLegend.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-        this.lblLegend.Location = new System.Drawing.Point(230, 20);
+        this.lblLegend.Location = new System.Drawing.Point(230, 10);
         this.lblLegend.Name = "lblLegend";
-        this.lblLegend.Size = new System.Drawing.Size(273, 30);
+        this.lblLegend.Size = new System.Drawing.Size(283, 15);
         this.lblLegend.TabIndex = 11;
-        this.lblLegend.Text = "Renkler: Yeşil=doğru yer | Mavi=doğru rakam yanlış yer\r\nSarı=fazla tekrar | Kırmızı=yok";
+        this.lblLegend.Text = "Renkler: Yeşil=doğru yer | Mavi=doğru rakam yanlış yer | Sarı=fazla tekrar | Kırmızı=yok";
         // 
         // MainForm
         // 
