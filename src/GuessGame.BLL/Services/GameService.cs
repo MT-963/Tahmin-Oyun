@@ -56,6 +56,7 @@ public class GameService
                 if (used + 1 > allowed)
                 {
                     colors.Add(FeedbackColor.Yellow); // rakam var ama fazla kullanıldı
+                    usedCounts[g] = used + 1; // sayacı güncelle ki sonraki tekrarlar da doğru işlesin
                 }
                 else
                 {

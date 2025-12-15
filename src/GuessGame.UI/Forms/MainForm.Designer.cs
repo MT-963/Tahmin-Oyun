@@ -34,6 +34,7 @@ partial class MainForm
         this.colScore = new System.Windows.Forms.ColumnHeader();
         this.colTime = new System.Windows.Forms.ColumnHeader();
         this.lblTop = new System.Windows.Forms.Label();
+        this.lblLegend = new System.Windows.Forms.Label();
         this.grpDifficulty.SuspendLayout();
         this.SuspendLayout();
         // 
@@ -210,11 +211,22 @@ partial class MainForm
         this.lblTop.TabIndex = 10;
         this.lblTop.Text = "En iyi 5 skor";
         // 
+        // lblLegend
+        // 
+        this.lblLegend.AutoSize = true;
+        this.lblLegend.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+        this.lblLegend.Location = new System.Drawing.Point(230, 20);
+        this.lblLegend.Name = "lblLegend";
+        this.lblLegend.Size = new System.Drawing.Size(273, 30);
+        this.lblLegend.TabIndex = 11;
+        this.lblLegend.Text = "Renkler: Yeşil=doğru yer | Mavi=doğru rakam yanlış yer\r\nSarı=fazla tekrar | Kırmızı=yok";
+        // 
         // MainForm
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(524, 461);
+        this.Controls.Add(this.lblLegend);
         this.Controls.Add(this.lblTop);
         this.Controls.Add(this.listScores);
         this.Controls.Add(this.panelFeedback);
@@ -275,5 +287,6 @@ partial class MainForm
     private System.Windows.Forms.ColumnHeader colScore;
     private System.Windows.Forms.ColumnHeader colTime;
     private System.Windows.Forms.Label lblTop;
+    private System.Windows.Forms.Label lblLegend;
 }
 
