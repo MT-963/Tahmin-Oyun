@@ -86,7 +86,15 @@ public class GameService
     {
         var digits = Enumerable.Range(0, 10).Select(x => (char)('0' + x)).ToList();
         var result = new char[length];
-        for (int i = 0; i < length; i++)
+
+        // ilk hane 0 olmasın
+        var firstPool = digits.Where(d => d != '0').ToList();
+        var firstIndex = _random.Next(firstPool.Count);
+        var firstDigit = firstPool[firstIndex];
+        result[0] = firstDigit;
+        digits.Remove(firstDigit);
+
+        for (int i = 1; i < length; i++)
         {
             var index = _random.Next(digits.Count);
             result[i] = digits[index];

@@ -75,7 +75,9 @@ public class SqlUserRepository : IUserRepository
     private static User Map(SqlDataReader reader)
     {
         string SafeString(string column) =>
-            reader.IsDBNull(reader.GetOrdinal(column)) ? string.Empty : reader.GetString(column);
+            reader.IsDBNull(reader.GetOrdinal(column))
+                ? string.Empty
+                : reader.GetString(reader.GetOrdinal(column));
 
         return new User
         {
