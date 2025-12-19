@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessGame.BLL", "src/GuessG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessGame.UI", "src/GuessGame.UI/GuessGame.UI.csproj", "{0C8F572E-DF0B-4604-B38E-0EB4ABDBF28A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuessGameSingle", "GuessGameSingle\GuessGameSingle.csproj", "{63C1F61C-3C58-4A7B-9E4F-0B9D88E0C3B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{0C8F572E-DF0B-4604-B38E-0EB4ABDBF28A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C8F572E-DF0B-4604-B38E-0EB4ABDBF28A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C8F572E-DF0B-4604-B38E-0EB4ABDBF28A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C1F61C-3C58-4A7B-9E4F-0B9D88E0C3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C1F61C-3C58-4A7B-9E4F-0B9D88E0C3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C1F61C-3C58-4A7B-9E4F-0B9D88E0C3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C1F61C-3C58-4A7B-9E4F-0B9D88E0C3B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
